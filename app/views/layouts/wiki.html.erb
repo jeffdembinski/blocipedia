@@ -84,10 +84,15 @@
       </ul>
     </div>
   </nav>
+  <div class="docs-header" id="content">
+    <div class="container">
+      <h1><%= @page_title %></h1>
+    </div>
+  </div>
+  <div class="container docs-content">
 
+  <%= yield %>
 
-      <%= yield %>
-
-
+  </div>
   </body>
 </html>
