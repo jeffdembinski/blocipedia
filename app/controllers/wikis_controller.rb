@@ -1,30 +1,36 @@
 class WikisController < ApplicationController
   layout "wiki"
 
+  after_action :verify_authorized, except: :index
+  after_action :verify_policy_scoped, only: :index
+
   def index
-    @wikis = Wiki.all
+    @wikis = policy_scope(Wiki).all
     @page_title = "Blocipedia Wikis"
   end
 
   def show
     @wiki = Wiki.find(params[:id])
     @page_title = @wiki.title
+    authorize @wiki
   end
 
   def new
-    @wiki = Wiki.new
+    @wiki =  Wiki.new
     @page_title = "Blocipedia Wikis"
+    authorize @wiki
   end
 
   def edit
     @wiki = Wiki.find(params[:id])
     @page_title = @wiki.title
+    authorize @wiki
   end
 
   def create
     @wiki = Wiki.new(wiki_params)
     @wiki.user = current_user
-
+    authorize @wiki
     if @wiki.save
       flash[:notice] = "Wiki was saved!"
       redirect_to @wiki
@@ -36,6 +42,7 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
     @wiki.assign_attributes(wiki_params)
 
     if @wiki.save
@@ -49,7 +56,7 @@ class WikisController < ApplicationController
 
   def destroy
     @wiki = Wiki.find(params[:id])
-
+    authorize @wiki
     if @wiki.destroy
       flash[:notice] = "Wiki was deleted successfully."
       redirect_to wikis_path
@@ -58,7 +65,7 @@ class WikisController < ApplicationController
       render :show
     end
   end
-      
+
 
   private
   def wiki_params

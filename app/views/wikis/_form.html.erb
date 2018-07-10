@@ -1,0 +1,34 @@
+<%= form_for @wiki do |f| %>
+  <% if wiki.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(wiki.errors.count, "error") %>.</h4>
+      <ul>
+        <% wiki.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group field">
+    <%= f.label :title %></br>
+    <%= f.text_field :title, placeholder: "Wiki Title" %>
+  </div>
+
+  <div class="form-group field">
+    <%= f.label :body %></br>
+    <%= f.text_area :body, placeholder: "Enter the body of your wiki here..." %>
+  </div>
+
+  <div class="form-group">
+    <div class="checkbox">
+      <%= f.check_box(:private, class: "form-check-input") %>
+    </div>
+    <%= f.label(:private, "Private", class: "form-check-label") %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Save", class: "btn btn-pill btn-success" %>
+  </div>
+
+<% end %>

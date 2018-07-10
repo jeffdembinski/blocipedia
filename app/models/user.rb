@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          authentication_keys: [:login]
 
+  after_initialize :init
+
   validates :username, presence: true, uniqueness: { case_sensitive: false }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -12,7 +14,6 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false }
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
   validate :validate_username
-
 
 attr_writer :login
 
@@ -38,5 +39,11 @@ attr_writer :login
       errors.add(:username, :invalid)
     end
   end
+
+  def init
+    self.role ||= :standard
+  end 
+
+  enum role: [:standard, :premium, :admin]
 
 end

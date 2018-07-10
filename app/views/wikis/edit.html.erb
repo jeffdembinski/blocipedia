@@ -1,14 +1,15 @@
-<h1>Wiki Edit</h1>
-
-<%= form_for @wiki do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-
-  <%= f.label :body %>
-  <%= f.text_area :body %>
-
-  <%= f.label "Private" %>
-  <%= f.check_box :private %>
-
-  <%= f.submit "Save" %>
-<% end %>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+      <h3>Wiki Edit</h3>
+      <p>Guidelines for Wikis</p>
+      <ul>
+        <li>Your title must be at least 3 characters long.</li>
+        <li>The body of your wiki must be at least 15 characters long.</li>
+        <li>Wikis are PUBLIC by default. Please check PRIVATE if that is your wish.</li>
+      </ul>
+      <hr>
+      <%= render partial: 'form', locals: { wiki: @wiki } %>
+    </div>
+  </div>
+</div>
