@@ -47,6 +47,7 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'coffee-rails', '~> 4.2'
 gem 'pundit'
+gem 'faker'
 
 group :development do
   gem 'listen', '>= 3.0.5', '<3.2'
