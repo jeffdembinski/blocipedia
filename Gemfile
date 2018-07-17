@@ -48,6 +48,7 @@ gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'coffee-rails', '~> 4.2'
 gem 'pundit'
 gem 'faker'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 group :development do
   gem 'listen', '>= 3.0.5', '<3.2'

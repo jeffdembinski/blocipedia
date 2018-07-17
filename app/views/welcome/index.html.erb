@@ -1,3 +1,45 @@
 
-  <h1>Welcome#index</h1>
-  <p>Find me in app/views/welcome/index.html.erb</p>
+  <h1>Subscription Options</h1>
+  <h3>Switch your plan?</h3>
+
+<% if current_user.role == "premium" %>
+  <div class="card-group">
+    <div class="card">
+      <!-- <img class="card-img-top" src=".../100px180/" alt="Card image cap"> -->
+      <div class="card-body">
+        <h5 class="card-title">Standard - Free </h5>
+        <ul class="card-text">
+          <li class="card-text">Create Public Wikis Only</li>
+          <li class="card-text">Wikis currently set to Private will become Public</li>
+        </ul>
+        <%= button_to [:downgrade], class: "btn btn-primary" do %>
+          Downgrade to Standard
+          <% end %>
+      </div>
+    </div>
+  <% elsif %>
+    <div class="card">
+      <!-- <img class="card-img-top" src=".../100px180/" alt="Card image cap"> -->
+      <div class="card-body">
+        <h5 class="card-title">Premium - $5.00</h5>
+        <ul class="card-text">
+          <li class="card-text">Create Private Wikis and Invite Collaborators</li>
+        </ul>
+        <!-- <a href="#" class="btn btn-primary">Upgrade Now</a> -->
+        <!-- <form action="your-server-side-code" method="POST"> -->
+        <%= form_tag success_path do %>
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-amount="500"
+            data-name="Blocipedia Wiki Subscription"
+            data-description="Premium Wiki Monthly Subscription"
+            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+            data-locale="auto">
+          </script>
+        <% end %>
+      <!-- </form> -->
+      </div>
+    </div>
+    <% end %>
+  </div>

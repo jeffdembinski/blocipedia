@@ -75,6 +75,7 @@
           <button class="btn btn-default navbar-btn navbar-btn-avatar" data-toggle="popover">
             <%= image_tag("avatar-dhg.png") %>
           </button>
+          <%= current_user.role %>
         </li>
       </ul>
 
@@ -101,7 +102,7 @@
         <%= flash[:alert] %>
       </div>
    <% end %>
-   
+
   <%= yield %>
 
   </div>
