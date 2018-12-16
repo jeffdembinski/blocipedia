@@ -34,8 +34,10 @@ class WelcomeController < ApplicationController
 
   def downgrade
     user = current_user
+    id = user.id
     user.role = "standard"
     user.save
+    Wiki.where(user_id: id).update_all(private: 'false')
   end
 
 

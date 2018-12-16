@@ -1,11 +1,12 @@
 class WikisController < ApplicationController
   layout "wiki"
 
-  after_action :verify_authorized, except: :index
-  after_action :verify_policy_scoped, only: :index
+  #after_action :verify_authorized, except: :index
+  #after_action :verify_policy_scoped, only: :index
 
   def index
-    @wikis = policy_scope(Wiki).all
+    @wikis = policy_scope(Wiki)
+    @user = current_user
     @page_title = "Blocipedia Wikis"
   end
 

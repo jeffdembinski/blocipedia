@@ -20,14 +20,14 @@
     <%= f.text_area :body, placeholder: "Enter the body of your wiki here..." %>
   </div>
 
-  <% if current_user.role == "premium" %>
+  <% if current_user.admin? || current_user.premium? %>
     <div class="form-group">
       <div class="checkbox">
         <%= f.check_box(:private, class: "form-check-input") %>
       </div>
       <%= f.label(:private, "Private", class: "form-check-label") %>
     </div>
-  <% end %> 
+  <% end %>
 
   <div class="form-group">
     <%= f.submit "Save", class: "btn btn-pill btn-success" %>
