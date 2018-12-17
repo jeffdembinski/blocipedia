@@ -2,7 +2,7 @@
   <!-- <img class="card-img-top" src="/100px180/" alt="Card image cap"> -->
   <div class="card-body">
     <h2 class="card-title"><%= @wiki.title %></h2>
-    <p class="card-text"><%= @wiki.body %></p>
+    <p class="card-text"><%= markdown(@wiki.body) %></p>
   </div>
 </div>
 <div class="container">

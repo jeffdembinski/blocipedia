@@ -7,7 +7,7 @@
       <!-- <img class="card-img-top" src="/100px180/" alt="Card image cap"> -->
       <div class="card-body">
         <h5 class="card-title"><%= wiki.title %></h5>
-        <p class="card-text"><%= wiki.body %></p>
+        <p class="card-text"><%= markdown(wiki.body) %></p>
         <%= link_to "Full Wiki", wiki, class: "btn btn-pill btn-primary" %>
       </div>
     </div>

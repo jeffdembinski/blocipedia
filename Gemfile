@@ -41,6 +41,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # GEM files that I've added for the Blocipedia Project
 gem 'devise'
+gem 'redcarpet'
 gem 'figaro'
 gem 'bootstrap-sass'
 gem 'bootstrap', '~> 4.1.1'
